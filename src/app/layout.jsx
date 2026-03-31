@@ -11,7 +11,7 @@ export const metadata = {
     images: [{ url: "/og-image.png", width: 1200, height: 630 }],
   },
   twitter: { card: "summary_large_image" },
-  robots: { index: true, follow: true },
+  robots: { index: false, follow: false },
   icons: { icon: "/favicon.ico", apple: "/apple-touch-icon.png" },
 };
 
