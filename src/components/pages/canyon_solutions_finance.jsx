@@ -51,7 +51,7 @@ function MockScreenshot({ mock, color, values }) {
   return null;
 }
 
-const LOGO_B64 = null; // removed, using /logo.png
+const LOGO_PATH = "/logo.png";
 
 export default function CanyonSolutionsFinance() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -84,7 +84,7 @@ export default function CanyonSolutionsFinance() {
       {/* Header */}
       <header style={{ position: "sticky", top: 0, zIndex: 20, padding: "14px 28px", display: "flex", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid rgba(66,59,87,0.2)", background: "rgba(13,13,15,0.85)", backdropFilter: "blur(12px)", WebkitBackdropFilter: "blur(12px)" }}>
         <a href="/" style={{ display: "flex", alignItems: "center", flexShrink: 0, textDecoration: "none" }}>
-          <img src={"/logo.png"} alt="Canyon" style={{ height: 20, width: "auto" }} />
+          <img src={LOGO_PATH} alt="Canyon" style={{ height: 20, width: "auto" }} />
         </a>
         <nav className="pnav-items" style={{ display: "flex", alignItems: "center", gap: 24 }}>
           {["Product", "Solutions", "Security", "Resources", "Company"].map((label, i) => (

@@ -19,45 +19,34 @@ export default function CanyonSolutionsIndex() {
 
   return (
     <div style={{ minHeight: "100vh", background: "#0D0D0F", color: "#F0E0DB", fontFamily: "'Outfit', sans-serif" }}>
+      <style>{`
+        @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap');
+        *{box-sizing:border-box}
+        ::-webkit-scrollbar{width:0px}
+        @media(max-width:768px){.nav-items{display:none !important}.hamburger{display:flex !important}}
+      `}</style>
+
       <header style={{ position: "sticky", top: 0, zIndex: 20, padding: "14px 28px", display: "flex", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid rgba(66,59,87,0.2)", background: "rgba(13,13,15,0.85)", backdropFilter: "blur(12px)" }}>
-        <Link href="/" style={{ display: "flex", alignItems: "center", flexShrink: 0, textDecoration: "none" }}>
-          <img src="/logo.png" alt="Canyon" style={{ height: 20 }} />
-        </Link>
+        <Link href="/" style={{ display: "flex", alignItems: "center", flexShrink: 0, textDecoration: "none" }}><img src="/logo.png" alt="Canyon" style={{ height: 20 }} /></Link>
         <nav className="nav-items" style={{ display: "flex", alignItems: "center", gap: 24 }}>
-          {["Product", "Solutions", "Security", "Resources", "Company"].map((l, i) => (
-            <Link key={i} href={l === "Solutions" ? "/solutions" : l === "Product" ? "/product" : l === "Security" ? "/security" : "#"} style={{ background: "transparent", border: "none", cursor: "pointer", fontFamily: "inherit", fontSize: 12, fontWeight: l === "Solutions" ? 700 : 500, color: l === "Solutions" ? "#F0E0DB" : "rgba(240,224,219,0.5)", padding: "4px 0", textDecoration: "none" }}>{l}</Link>
+          {["Product", "Solutions", "Security", "Resources"].map((l, i) => (
+            <Link key={i} href={l === "Product" ? "/product" : l === "Solutions" ? "/solutions" : l === "Security" ? "/security" : "/resources/blog"} style={{ fontFamily: "inherit", fontSize: 12, fontWeight: l === "Solutions" ? 700 : 500, color: l === "Solutions" ? "#F0E0DB" : "rgba(240,224,219,0.5)", padding: "4px 0", textDecoration: "none" }}>{l}</Link>
           ))}
         </nav>
-        <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-          <Link href={process.env.NEXT_PUBLIC_CALENDLY_URL || "#"} style={{ background: `linear-gradient(135deg, ${CRIMSON}, #532E25)`, border: "none", color: "#F0E0DB", padding: "7px 18px", borderRadius: 7, fontSize: 11, fontWeight: 600, cursor: "pointer", fontFamily: "inherit", textDecoration: "none" }}>Book a Demo</Link>
-          <button className="hamburger" onClick={() => setMobileMenuOpen(!mobileMenuOpen)} style={{ display: "none", background: "transparent", border: "none", cursor: "pointer", padding: 4, width: 32, height: 32, alignItems: "center", justifyContent: "center" }}>
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#F0E0DB" strokeWidth="2" strokeLinecap="round">
-              {mobileMenuOpen ? <><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></> : <><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></>}
-            </svg>
-          </button>
-        </div>
+        <Link href="#" style={{ background: `linear-gradient(135deg, ${CRIMSON}, #532E25)`, border: "none", color: "#F0E0DB", padding: "7px 18px", borderRadius: 7, fontSize: 11, fontWeight: 600, fontFamily: "inherit", textDecoration: "none" }}>Book a Demo</Link>
       </header>
 
       <main style={{ maxWidth: 880, margin: "0 auto", padding: "0 24px" }}>
         <section style={{ paddingTop: 60, paddingBottom: 40 }}>
-          <h1 className="hero-title" style={{ fontSize: 36, fontWeight: 700, lineHeight: 1.15, letterSpacing: -0.8, color: "rgba(240,224,219,0.97)", margin: "0 0 12px" }}>
-            Canyon for every team.
-          </h1>
-          <p style={{ fontSize: 16, color: "rgba(240,224,219,0.45)", lineHeight: 1.6, maxWidth: 480, margin: 0 }}>
-            Business teams describe what they need. Canyon builds it on certified enterprise data with governance enforced by default.
-          </p>
+          <h1 style={{ fontSize: 36, fontWeight: 700, lineHeight: 1.15, letterSpacing: -0.8, color: "rgba(240,224,219,0.97)", margin: "0 0 12px" }}>Canyon for every team.</h1>
+          <p style={{ fontSize: 16, color: "rgba(240,224,219,0.45)", lineHeight: 1.6, maxWidth: 480, margin: 0 }}>Business teams describe what they need. Canyon builds it on certified enterprise data with governance enforced by default.</p>
         </section>
 
         <section style={{ paddingBottom: 60 }}>
           <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
             {VERTICALS.map((v, i) => (
               <Link key={i} href={v.href} style={{ textDecoration: "none" }}>
-                <div style={{
-                  background: "#18181B", border: "1px solid #2A1F1C", borderRadius: 14,
-                  padding: "28px 28px 24px", cursor: "pointer",
-                  transition: "border-color 0.15s, transform 0.15s",
-                  display: "flex", alignItems: "flex-start", gap: 20,
-                }}
+                <div style={{ background: "#18181B", border: "1px solid #2A1F1C", borderRadius: 14, padding: "28px 28px 24px", cursor: "pointer", transition: "border-color 0.15s, transform 0.15s", display: "flex", alignItems: "flex-start", gap: 20 }}
                   onMouseEnter={e => { e.currentTarget.style.borderColor = "#532E25"; e.currentTarget.style.transform = "translateY(-2px)"; }}
                   onMouseLeave={e => { e.currentTarget.style.borderColor = "#2A1F1C"; e.currentTarget.style.transform = "translateY(0)"; }}>
                   <div style={{ width: 4, height: 40, borderRadius: 2, background: v.accent, flexShrink: 0, marginTop: 2 }} />
@@ -77,11 +66,7 @@ export default function CanyonSolutionsIndex() {
         <section style={{ textAlign: "center", paddingBottom: 60 }}>
           <div style={{ fontSize: 22, fontWeight: 700, color: "rgba(240,224,219,0.9)", marginBottom: 8 }}>Don't see your function?</div>
           <div style={{ fontSize: 15, color: "rgba(240,224,219,0.4)", marginBottom: 20 }}>Canyon works for any team with enterprise data and a need for internal tools.</div>
-          <Link href={process.env.NEXT_PUBLIC_CALENDLY_URL || "#"} style={{
-            display: "inline-block", background: `linear-gradient(135deg, ${CRIMSON}, #532E25)`,
-            border: "none", borderRadius: 10, padding: "14px 28px", color: "#F0E0DB",
-            fontSize: 15, fontWeight: 700, textDecoration: "none",
-          }}>Book a Demo</Link>
+          <Link href="#" style={{ display: "inline-block", background: `linear-gradient(135deg, ${CRIMSON}, #532E25)`, border: "none", borderRadius: 10, padding: "14px 28px", color: "#F0E0DB", fontSize: 15, fontWeight: 700, textDecoration: "none" }}>Book a Demo</Link>
         </section>
       </main>
 

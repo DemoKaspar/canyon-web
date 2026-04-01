@@ -3,7 +3,7 @@ import { useState } from "react";
 
 const CRIMSON = "#FF4444";
 const CYAN = "#8BE9FD";
-const LOGO_B64 = null; // removed, using /logo.png
+const LOGO_PATH = "/logo.png";
 
 export default function CanyonDataLayerPage() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -44,7 +44,7 @@ export default function CanyonDataLayerPage() {
         background: "rgba(13,13,15,0.85)", backdropFilter: "blur(12px)", WebkitBackdropFilter: "blur(12px)",
       }}>
         <a href="/" style={{ display: "flex", alignItems: "center", flexShrink: 0, textDecoration: "none" }}>
-          <img src={"/logo.png"} alt="Canyon" style={{ height: 20, width: "auto" }} />
+          <img src={LOGO_PATH} alt="Canyon" style={{ height: 20, width: "auto" }} />
         </a>
         <nav className="pnav-items" style={{ display: "flex", alignItems: "center", gap: 24 }}>
           <div style={{ position: "relative" }}

@@ -3,7 +3,7 @@ import { useState } from "react";
 const CRIMSON = "#FF4444";
 const CYAN = "#8BE9FD";
 const GREEN = "#50FA7B";
-const LOGO_B64 = null; // removed, using /logo.png
+const LOGO_PATH = "/logo.png";
 
 const FUNCTIONS = ["All", "Operations", "Finance", "Sales", "Customer Success", "People", "Data & IT", "Government"];
 const FUNCTION_COLORS = { Operations: "#FFB464", Finance: "#64B4FF", Sales: "#E078F0", "Customer Success": "#50FA7B", People: "#E078F0", "Data & IT": "#8BE9FD", Government: "#FFB464" };
@@ -79,7 +79,7 @@ export default function CanyonExamples() {
       `}</style>
 
       <header style={{ position: "sticky", top: 0, zIndex: 20, padding: "14px 28px", display: "flex", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid rgba(66,59,87,0.2)", background: "rgba(13,13,15,0.85)", backdropFilter: "blur(12px)" }}>
-        <a href="/" style={{ display: "flex", alignItems: "center", flexShrink: 0, textDecoration: "none" }}><img src={"/logo.png"} alt="Canyon" style={{ height: 20 }} /></a>
+        <a href="/" style={{ display: "flex", alignItems: "center", flexShrink: 0, textDecoration: "none" }}><img src={LOGO_PATH} alt="Canyon" style={{ height: 20 }} /></a>
         <nav className="pnav-items" style={{ display: "flex", alignItems: "center", gap: 24 }}>
           {["Product", "Solutions", "Security", "Resources", "Company"].map((l, i) => (
             <button key={i} style={{ background: "transparent", border: "none", cursor: "pointer", fontFamily: "inherit", fontSize: 12, fontWeight: 500, color: "rgba(240,224,219,0.5)", padding: "4px 0" }}>{l}</button>
