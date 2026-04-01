@@ -83,7 +83,7 @@ export default function ExampleDetail({ id }) {
         <Link href="#" style={{ background: `linear-gradient(135deg, ${CRIMSON}, #532E25)`, border: "none", color: "#F0E0DB", padding: "7px 18px", borderRadius: 7, fontSize: 11, fontWeight: 600, textDecoration: "none" }}>Book a Demo</Link>
       </header>
 
-      <main style={{ maxWidth: 880, margin: "0 auto", padding: "0 24px" }}>
+      <main style={{ maxWidth: 1100, margin: "0 auto", padding: "0 24px" }}>
         <div style={{ paddingTop: 24, display: "flex", alignItems: "center", gap: 6, marginBottom: 24 }}>
           <Link href="/examples" style={{ fontSize: 12, color: "rgba(240,224,219,0.35)", textDecoration: "none" }}>Examples</Link>
           <span style={{ fontSize: 10, color: "rgba(240,224,219,0.2)" }}>/</span>
@@ -170,7 +170,7 @@ export default function ExampleDetail({ id }) {
         </section>
       </main>
 
-      <footer style={{ padding: "40px 28px 24px", borderTop: "1px solid rgba(66,59,87,0.15)", display: "flex", alignItems: "center", justifyContent: "space-between", maxWidth: 880, margin: "0 auto" }}>
+      <footer style={{ padding: "40px 28px 24px", borderTop: "1px solid rgba(66,59,87,0.15)", display: "flex", alignItems: "center", justifyContent: "space-between", maxWidth: 1100, margin: "0 auto" }}>
         <span style={{ fontSize: 11, color: "rgba(240,224,219,0.25)" }}>© 2026 PlatCo Group</span>
         <div style={{ display: "flex", gap: 20 }}>
           <Link href="#" style={{ fontSize: 11, color: "rgba(240,224,219,0.25)", textDecoration: "none" }}>Privacy Policy</Link>

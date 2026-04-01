@@ -1,8 +1,7 @@
 "use client";
-import { useState } from "react";
+import PageHeader from "@/components/PageHeader";
 
 const CRIMSON = "#FF4444";
-const LOGO_PATH = "/logo.png";
 
 const LAYERS = [
   {
@@ -68,7 +67,6 @@ const LAYERS = [
 ];
 
 export default function CanyonProductPage() {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
 
 
@@ -80,10 +78,7 @@ export default function CanyonProductPage() {
         @keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
         ::-webkit-scrollbar{width:0px}
         ::-webkit-scrollbar-thumb{background:transparent}
-        @media(max-width:768px){
-          .pnav-items{display:none !important}
-          .phamburger{display:flex !important}
-          .phero-title{font-size:28px !important}
+        @media(max-width:768px){.phero-title{font-size:28px !important}
           .psection-title{font-size:24px !important}
           .player-cards{gap:16px !important}
           .pstep-grid{grid-template-columns:1fr !important}
@@ -92,6 +87,9 @@ export default function CanyonProductPage() {
           .pisnot-grid{grid-template-columns:1fr !important}
         }
       `}</style>
+
+      <PageHeader activeSection={"Product"} />
+
 
       {/* Background */}
       <div style={{ position: "fixed", inset: 0, zIndex: 0, pointerEvents: "none",
@@ -112,119 +110,19 @@ export default function CanyonProductPage() {
         <rect width="100%" height="100%" fill="url(#topo)"/>
       </svg>
 
-      {/* Header */}
-      <header style={{
-        position: "sticky", top: 0, zIndex: 20, padding: "14px 28px",
-        display: "flex", alignItems: "center", justifyContent: "space-between",
-        borderBottom: "1px solid rgba(66,59,87,0.2)",
-        background: "rgba(13,13,15,0.85)", backdropFilter: "blur(12px)", WebkitBackdropFilter: "blur(12px)",
-      }}>
-        <a href="/" style={{ display: "flex", alignItems: "center", flexShrink: 0, textDecoration: "none" }}>
-          <img src={LOGO_PATH} alt="Canyon" style={{ height: 20, width: "auto" }} />
-        </a>
-        <nav className="pnav-items" style={{ display: "flex", alignItems: "center", gap: 24 }}>
-          {/* Product with dropdown */}
-          <div style={{ position: "relative" }}
-            onMouseEnter={e => e.currentTarget.querySelector('.pdropdown').style.opacity = 1}
-            onMouseLeave={e => e.currentTarget.querySelector('.pdropdown').style.opacity = 0}
-          >
-            <button style={{
-              background: "transparent", border: "none", cursor: "pointer",
-              fontFamily: "inherit", fontSize: 12, fontWeight: 700,
-              color: "#F0E0DB", padding: "4px 0", display: "flex", alignItems: "center", gap: 3,
-            }}>
-              Product
-              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><polyline points="6 9 12 15 18 9"/></svg>
-            </button>
-            <div className="pdropdown" style={{
-              position: "absolute", top: "100%", left: -12, paddingTop: 8,
-              opacity: 0, transition: "opacity 0.15s", pointerEvents: "auto",
-            }}
-              onMouseEnter={e => e.currentTarget.style.opacity = 1}
-              onMouseLeave={e => e.currentTarget.style.opacity = 0}
-            >
-              <div style={{
-                background: "rgba(30,28,42,0.95)", border: "1px solid rgba(66,59,87,0.35)",
-                borderRadius: 10, padding: "8px 4px", minWidth: 200,
-                backdropFilter: "blur(12px)", WebkitBackdropFilter: "blur(12px)",
-                boxShadow: "0 8px 32px rgba(0,0,0,0.4)",
-              }}>
-                {[
-                  { label: "Data Layer", sub: "Certified data & access controls", href: "/product/semantic-data-layer", color: "#8BE9FD" },
-                  { label: "Agent Orchestration", sub: "Model-agnostic context injection", href: "/product/agent-orchestration", color: CRIMSON },
-                  { label: "Deployment", sub: "Your infrastructure, one click", href: "/product/deployment", color: "#50FA7B" },
-                ].map((item, j) => (
-                  <a key={j} href={item.href} style={{
-                    display: "block", padding: "10px 14px", borderRadius: 7,
-                    textDecoration: "none", transition: "background 0.1s",
-                  }}
-                    onMouseEnter={e => e.currentTarget.style.background = "rgba(54,50,72,0.4)"}
-                    onMouseLeave={e => e.currentTarget.style.background = "transparent"}
-                  >
-                    <div style={{ display: "flex", alignItems: "center", gap: 6, marginBottom: 2 }}>
-                      <span style={{ width: 6, height: 6, borderRadius: 3, background: item.color, flexShrink: 0 }} />
-                      <span style={{ fontSize: 13, fontWeight: 600, color: "#F0E0DB" }}>{item.label}</span>
-                    </div>
-                    <div style={{ fontSize: 11, color: "rgba(240,224,219,0.4)", paddingLeft: 12 }}>{item.sub}</div>
-                  </a>
-                ))}
-              </div>
-            </div>
-          </div>
-          {/* Other nav items */}
-          {["Solutions", "Security", "Resources", "Company"].map((label, i) => (
-            <button key={i} style={{
-              background: "transparent", border: "none", cursor: "pointer",
-              fontFamily: "inherit", fontSize: 12, fontWeight: 500,
-              color: "rgba(240,224,219,0.5)", padding: "4px 0", transition: "color 0.15s",
-            }}>{label}</button>
-          ))}
-        </nav>
-        <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-          <button onClick={() => window.open("https://calendly.com", "_blank")} style={{
-            background: `linear-gradient(135deg, ${CRIMSON}, #532E25)`, border: "none",
-            color: "#F0E0DB", padding: "7px 18px", borderRadius: 7,
-            fontSize: 11, fontWeight: 600, cursor: "pointer", fontFamily: "inherit",
-          }}>Book a Demo</button>
-          <button className="phamburger" onClick={() => setMobileMenuOpen(!mobileMenuOpen)} style={{
-            display: "none", background: "transparent", border: "none", cursor: "pointer",
-            padding: 4, width: 32, height: 32, alignItems: "center", justifyContent: "center",
-          }}>
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#F0E0DB" strokeWidth="2" strokeLinecap="round">
-              {mobileMenuOpen ? <><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></> :
-                <><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></>}
-            </svg>
-          </button>
-        </div>
-      </header>
-
       {/* Mobile menu */}
-      {mobileMenuOpen && (
-        <div style={{ position: "fixed", inset: 0, zIndex: 25, background: "rgba(13,13,15,0.9)", backdropFilter: "blur(8px)" }} onClick={() => setMobileMenuOpen(false)}>
-          <div style={{ padding: "72px 28px 32px", display: "flex", flexDirection: "column", gap: 4 }} onClick={e => e.stopPropagation()}>
-            {["Product", "Solutions", "Security", "Resources", "Company"].map(l => (
-              <button key={l} onClick={() => setMobileMenuOpen(false)} style={{
-                background: "transparent", border: "none", cursor: "pointer", fontFamily: "inherit",
-                fontSize: 18, fontWeight: 600, color: "#F0E0DB", padding: "14px 0", textAlign: "left",
-                borderBottom: "1px solid rgba(66,59,87,0.2)",
-              }}>{l}</button>
-            ))}
-          </div>
-        </div>
-      )}
-
-      <main style={{ position: "relative", zIndex: 5, maxWidth: 880, margin: "0 auto", padding: "0 24px" }}>
+<main style={{ position: "relative", zIndex: 5, maxWidth: 1100, margin: "0 auto", padding: "0 24px" }}>
 
         {/* === SECTION 1: OVERVIEW === */}
         <section style={{ paddingTop: 80, paddingBottom: 60 }}>
           <div style={{ animation: "fadeUp 0.6s ease" }}>
             <h1 className="phero-title" style={{
               fontSize: 42, fontWeight: 700, lineHeight: 1.12, letterSpacing: -1,
-              color: "rgba(240,224,219,0.97)", margin: "0 0 12px", maxWidth: 560,
+              color: "rgba(240,224,219,0.97)", margin: "0 0 12px", maxWidth: 720,
             }}>
               The enterprise data layer for AI-built software.
             </h1>
-            <p style={{ fontSize: 18, color: "rgba(240,224,219,0.5)", lineHeight: 1.6, maxWidth: 520, margin: "0 0 48px" }}>
+            <p style={{ fontSize: 18, color: "rgba(240,224,219,0.5)", lineHeight: 1.6, maxWidth: 700, margin: "0 0 48px" }}>
               Certified data. Governed access. Deployed to your infrastructure.
             </p>
 
@@ -261,11 +159,11 @@ export default function CanyonProductPage() {
           <h2 className="psection-title" style={{ fontSize: 32, fontWeight: 700, letterSpacing: -0.5, color: "rgba(240,224,219,0.95)", margin: "0 0 6px" }}>
             Three layers. One integrated platform.
           </h2>
-          <p style={{ fontSize: 15, color: "rgba(240,224,219,0.5)", lineHeight: 1.6, maxWidth: 480, margin: "0 0 36px" }}>
+          <p style={{ fontSize: 15, color: "rgba(240,224,219,0.5)", lineHeight: 1.6, maxWidth: 680, margin: "0 0 36px" }}>
             Data access, AI orchestration, and deployment. integrated and independently available.
           </p>
 
-          <div className="player-cards" style={{ display: "flex", flexDirection: "column", gap: 20 }}>
+          <div className="player-cards" style={{ display: "flex", flexDirection: "column", gap: 20, maxWidth: 900 }}>
             {LAYERS.map((layer, i) => (
                 <div key={layer.id} id={layer.id} style={{
                     background: "rgba(54,50,72,0.2)", border: `1px solid ${layer.tagBorder}`,
@@ -448,7 +346,7 @@ export default function CanyonProductPage() {
         position: "relative", zIndex: 5, padding: "40px 28px 24px",
         borderTop: "1px solid rgba(66,59,87,0.15)",
         display: "flex", alignItems: "center", justifyContent: "space-between",
-        maxWidth: 880, margin: "0 auto",
+        maxWidth: 1100, margin: "0 auto",
       }}>
         <span style={{ fontSize: 11, color: "rgba(240,224,219,0.3)" }}>© 2026 PlatCo Group</span>
         <div style={{ display: "flex", gap: 20 }}>

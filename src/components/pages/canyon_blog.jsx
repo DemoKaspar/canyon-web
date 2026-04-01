@@ -1,8 +1,7 @@
 "use client";
-import { useState } from "react";
+import PageHeader from "@/components/PageHeader";
 const CRIMSON = "#FF4444";
 const CYAN = "#8BE9FD";
-const LOGO_PATH = "/logo.png";
 
 const POSTS = [
   { date: "Mar 28, 2026", title: "Why the semantic layer is the real AI moat", tag: "Product", desc: "AI models are commoditizing. The differentiator is certified enterprise data. Here's why.", read: "6 min" },
@@ -16,33 +15,18 @@ const POSTS = [
 const TAG_COLORS = { Product: CYAN, Customer: "#50FA7B", Industry: "#FFB464", Engineering: "#E078F0" };
 
 export default function CanyonBlog() {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   return (
     <div style={{ minHeight: "100vh", background: "#0D0D0F", color: "#F0E0DB", fontFamily: "'Outfit', sans-serif" }}>
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap');
         *{box-sizing:border-box}
-        @media(max-width:768px){.pnav-items{display:none !important}.phamburger{display:flex !important}.blog-grid{grid-template-columns:1fr !important}}
+        @media(max-width:768px){.blog-grid{grid-template-columns:1fr !important}}
       `}</style>
 
-      <header style={{ position: "sticky", top: 0, zIndex: 20, padding: "14px 28px", display: "flex", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid rgba(66,59,87,0.2)", background: "rgba(13,13,15,0.85)", backdropFilter: "blur(12px)" }}>
-        <a href="/" style={{ display: "flex", alignItems: "center", flexShrink: 0, textDecoration: "none" }}><img src={LOGO_PATH} alt="Canyon" style={{ height: 20 }} /></a>
-        <nav className="pnav-items" style={{ display: "flex", alignItems: "center", gap: 24 }}>
-          {["Product", "Solutions", "Security", "Resources", "Company"].map((l, i) => (
-            <button key={i} style={{ background: "transparent", border: "none", cursor: "pointer", fontFamily: "inherit", fontSize: 12, fontWeight: 500, color: "rgba(240,224,219,0.5)", padding: "4px 0" }}>{l}</button>
-          ))}
-        </nav>
-        <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-          <button style={{ background: `linear-gradient(135deg, ${CRIMSON}, #532E25)`, border: "none", color: "#F0E0DB", padding: "7px 18px", borderRadius: 7, fontSize: 11, fontWeight: 600, cursor: "pointer", fontFamily: "inherit" }}>Book a Demo</button>
-          <button className="phamburger" onClick={() => setMobileMenuOpen(!mobileMenuOpen)} style={{ display: "none", background: "transparent", border: "none", cursor: "pointer", padding: 4, width: 32, height: 32, alignItems: "center", justifyContent: "center" }}>
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#F0E0DB" strokeWidth="2" strokeLinecap="round">
-              {mobileMenuOpen ? <><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></> : <><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></>}
-            </svg>
-          </button>
-        </div>
-      </header>
+      <PageHeader activeSection={"Resources"} />
 
-      <main style={{ maxWidth: 880, margin: "0 auto", padding: "0 24px" }}>
+
+      <main style={{ maxWidth: 1100, margin: "0 auto", padding: "0 24px" }}>
         <section style={{ paddingTop: 48, paddingBottom: 24 }}>
           <h1 style={{ fontSize: 36, fontWeight: 700, letterSpacing: -0.8, color: "rgba(240,224,219,0.97)", margin: "0 0 8px" }}>Blog</h1>
           <p style={{ fontSize: 16, color: "rgba(240,224,219,0.45)", margin: "0 0 32px" }}>Product updates, customer stories, and thinking on enterprise AI.</p>
@@ -81,7 +65,7 @@ export default function CanyonBlog() {
         </section>
       </main>
 
-      <footer style={{ padding: "40px 28px 24px", borderTop: "1px solid rgba(66,59,87,0.15)", display: "flex", alignItems: "center", justifyContent: "space-between", maxWidth: 880, margin: "0 auto" }}>
+      <footer style={{ padding: "40px 28px 24px", borderTop: "1px solid rgba(66,59,87,0.15)", display: "flex", alignItems: "center", justifyContent: "space-between", maxWidth: 1100, margin: "0 auto" }}>
         <span style={{ fontSize: 11, color: "rgba(240,224,219,0.3)" }}>© 2026 PlatCo Group</span>
         <div style={{ display: "flex", gap: 20 }}>
           <a href="#" style={{ fontSize: 11, color: "rgba(240,224,219,0.3)", textDecoration: "none" }}>Privacy Policy</a>

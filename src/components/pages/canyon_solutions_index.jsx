@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import PageHeader from "@/components/PageHeader";
 import Link from "next/link";
 
 const CRIMSON = "#FF4444";
@@ -15,7 +15,6 @@ const VERTICALS = [
 ];
 
 export default function CanyonSolutionsIndex() {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
     <div style={{ minHeight: "100vh", background: "#0D0D0F", color: "#F0E0DB", fontFamily: "'Outfit', sans-serif" }}>
@@ -23,23 +22,16 @@ export default function CanyonSolutionsIndex() {
         @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap');
         *{box-sizing:border-box}
         ::-webkit-scrollbar{width:0px}
-        @media(max-width:768px){.nav-items{display:none !important}.hamburger{display:flex !important}}
+        @media(max-width:768px){}
       `}</style>
 
-      <header style={{ position: "sticky", top: 0, zIndex: 20, padding: "14px 28px", display: "flex", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid rgba(66,59,87,0.2)", background: "rgba(13,13,15,0.85)", backdropFilter: "blur(12px)" }}>
-        <Link href="/" style={{ display: "flex", alignItems: "center", flexShrink: 0, textDecoration: "none" }}><img src="/logo.png" alt="Canyon" style={{ height: 20 }} /></Link>
-        <nav className="nav-items" style={{ display: "flex", alignItems: "center", gap: 24 }}>
-          {["Product", "Solutions", "Security", "Resources"].map((l, i) => (
-            <Link key={i} href={l === "Product" ? "/product" : l === "Solutions" ? "/solutions" : l === "Security" ? "/security" : "/resources/blog"} style={{ fontFamily: "inherit", fontSize: 12, fontWeight: l === "Solutions" ? 700 : 500, color: l === "Solutions" ? "#F0E0DB" : "rgba(240,224,219,0.5)", padding: "4px 0", textDecoration: "none" }}>{l}</Link>
-          ))}
-        </nav>
-        <Link href="#" style={{ background: `linear-gradient(135deg, ${CRIMSON}, #532E25)`, border: "none", color: "#F0E0DB", padding: "7px 18px", borderRadius: 7, fontSize: 11, fontWeight: 600, fontFamily: "inherit", textDecoration: "none" }}>Book a Demo</Link>
-      </header>
+      <PageHeader activeSection={"Solutions"} />
 
-      <main style={{ maxWidth: 880, margin: "0 auto", padding: "0 24px" }}>
+
+      <main style={{ maxWidth: 1100, margin: "0 auto", padding: "0 24px" }}>
         <section style={{ paddingTop: 60, paddingBottom: 40 }}>
           <h1 style={{ fontSize: 36, fontWeight: 700, lineHeight: 1.15, letterSpacing: -0.8, color: "rgba(240,224,219,0.97)", margin: "0 0 12px" }}>Canyon for every team.</h1>
-          <p style={{ fontSize: 16, color: "rgba(240,224,219,0.45)", lineHeight: 1.6, maxWidth: 480, margin: 0 }}>Business teams describe what they need. Canyon builds it on certified enterprise data with governance enforced by default.</p>
+          <p style={{ fontSize: 16, color: "rgba(240,224,219,0.45)", lineHeight: 1.6, maxWidth: 640, margin: 0 }}>Business teams describe what they need. Canyon builds it on certified enterprise data with governance enforced by default.</p>
         </section>
 
         <section style={{ paddingBottom: 60 }}>
@@ -70,7 +62,7 @@ export default function CanyonSolutionsIndex() {
         </section>
       </main>
 
-      <footer style={{ padding: "40px 28px 24px", borderTop: "1px solid rgba(66,59,87,0.15)", display: "flex", alignItems: "center", justifyContent: "space-between", maxWidth: 880, margin: "0 auto" }}>
+      <footer style={{ padding: "40px 28px 24px", borderTop: "1px solid rgba(66,59,87,0.15)", display: "flex", alignItems: "center", justifyContent: "space-between", maxWidth: 1100, margin: "0 auto" }}>
         <span style={{ fontSize: 11, color: "rgba(240,224,219,0.25)" }}>© 2026 PlatCo Group</span>
         <div style={{ display: "flex", gap: 20 }}>
           <Link href="#" style={{ fontSize: 11, color: "rgba(240,224,219,0.25)", textDecoration: "none" }}>Privacy Policy</Link>

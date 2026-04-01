@@ -1,8 +1,8 @@
 "use client";
 import { useState } from "react";
+import PageHeader from "@/components/PageHeader";
 const CRIMSON = "#FF4444";
 const GREEN = "#50FA7B";
-const LOGO_PATH = "/logo.png";
 
 const CHECKLIST = [
   "SSO/IdP integration (Okta, Entra ID). No separate user management.",
@@ -16,8 +16,6 @@ const CHECKLIST = [
 const SECTIONS_NAV = ["Identity", "Authorization", "Auditability", "Data Handling", "Integrations", "Compliance"];
 
 export default function CanyonSecurity() {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-
   return (
     <div style={{ minHeight: "100vh", background: "#0D0D0F", color: "#F0E0DB", fontFamily: "'Outfit', sans-serif" }}>
       <style>{`
@@ -26,8 +24,6 @@ export default function CanyonSecurity() {
         ::-webkit-scrollbar{width:0px}
         ::-webkit-scrollbar-thumb{background:transparent}
         @media(max-width:768px){
-          .pnav-items{display:none !important}
-          .phamburger{display:flex !important}
           .sec-hero-title{font-size:28px !important}
           .sec-grid-2{grid-template-columns:1fr !important}
           .sec-sidebar{display:none !important}
@@ -35,35 +31,9 @@ export default function CanyonSecurity() {
         }
       `}</style>
 
-      {/* Header */}
-      <header style={{ position: "sticky", top: 0, zIndex: 20, padding: "14px 28px", display: "flex", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid rgba(66,59,87,0.2)", background: "rgba(13,13,15,0.85)", backdropFilter: "blur(12px)" }}>
-        <a href="/" style={{ display: "flex", alignItems: "center", flexShrink: 0, textDecoration: "none" }}><img src={LOGO_PATH} alt="Canyon" style={{ height: 20 }} /></a>
-        <nav className="pnav-items" style={{ display: "flex", alignItems: "center", gap: 24 }}>
-          {["Product", "Solutions", "Security", "Resources", "Company"].map((l, i) => (
-            <button key={i} style={{ background: "transparent", border: "none", cursor: "pointer", fontFamily: "inherit", fontSize: 12, fontWeight: l === "Security" ? 700 : 500, color: l === "Security" ? "#F0E0DB" : "rgba(240,224,219,0.5)", padding: "4px 0" }}>{l}</button>
-          ))}
-        </nav>
-        <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-          <button style={{ background: `linear-gradient(135deg, ${CRIMSON}, #532E25)`, border: "none", color: "#F0E0DB", padding: "7px 18px", borderRadius: 7, fontSize: 11, fontWeight: 600, cursor: "pointer", fontFamily: "inherit" }}>Book a Demo</button>
-          <button className="phamburger" onClick={() => setMobileMenuOpen(!mobileMenuOpen)} style={{ display: "none", background: "transparent", border: "none", cursor: "pointer", padding: 4, width: 32, height: 32, alignItems: "center", justifyContent: "center" }}>
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#F0E0DB" strokeWidth="2" strokeLinecap="round">
-              {mobileMenuOpen ? <><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></> : <><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></>}
-            </svg>
-          </button>
-        </div>
-      </header>
+      <PageHeader activeSection="Security" />
 
-      {mobileMenuOpen && (
-        <div style={{ position: "fixed", inset: 0, zIndex: 25, background: "rgba(13,13,15,0.9)", backdropFilter: "blur(8px)" }} onClick={() => setMobileMenuOpen(false)}>
-          <div style={{ padding: "72px 28px 32px", display: "flex", flexDirection: "column", gap: 4 }} onClick={e => e.stopPropagation()}>
-            {["Product", "Solutions", "Security", "Resources", "Company"].map(l => (
-              <button key={l} onClick={() => setMobileMenuOpen(false)} style={{ background: "transparent", border: "none", cursor: "pointer", fontFamily: "inherit", fontSize: 18, fontWeight: 600, color: "#F0E0DB", padding: "14px 0", textAlign: "left", borderBottom: "1px solid rgba(66,59,87,0.2)" }}>{l}</button>
-            ))}
-          </div>
-        </div>
-      )}
-
-      <div style={{ display: "flex", maxWidth: 1000, margin: "0 auto", padding: "0 24px" }}>
+      <div style={{ display: "flex", maxWidth: 1200, margin: "0 auto", padding: "0 24px" }}>
         {/* Sidebar */}
         <nav className="sec-sidebar" style={{ position: "sticky", top: 80, width: 180, flexShrink: 0, paddingTop: 60, paddingRight: 24, alignSelf: "flex-start" }}>
           {SECTIONS_NAV.map((s, i) => (
@@ -71,13 +41,13 @@ export default function CanyonSecurity() {
           ))}
         </nav>
 
-        <main style={{ flex: 1, maxWidth: 760 }}>
+        <main style={{ flex: 1, maxWidth: 960 }}>
           {/* Hero */}
           <section style={{ paddingTop: 60, paddingBottom: 48 }}>
             <h1 className="sec-hero-title" style={{ fontSize: 36, fontWeight: 700, lineHeight: 1.15, letterSpacing: -0.8, color: "rgba(240,224,219,0.97)", margin: "0 0 12px" }}>
               Security is not a feature. It's how Canyon works.
             </h1>
-            <p style={{ fontSize: 16, color: "rgba(240,224,219,0.5)", lineHeight: 1.6, maxWidth: 560, margin: "0 0 28px" }}>
+            <p style={{ fontSize: 16, color: "rgba(240,224,219,0.5)", lineHeight: 1.6, maxWidth: 720, margin: "0 0 28px" }}>
               Every deployment enforces access control, audit logging, and data governance by default. There is no "turn security on" step.
             </p>
             <div style={{ display: "flex", flexDirection: "column", gap: 10, marginBottom: 28 }}>
@@ -242,7 +212,7 @@ export default function CanyonSecurity() {
         </main>
       </div>
 
-      <footer style={{ padding: "40px 28px 24px", borderTop: "1px solid rgba(66,59,87,0.15)", display: "flex", alignItems: "center", justifyContent: "space-between", maxWidth: 1000, margin: "0 auto" }}>
+      <footer style={{ padding: "40px 28px 24px", borderTop: "1px solid rgba(66,59,87,0.15)", display: "flex", alignItems: "center", justifyContent: "space-between", maxWidth: 1200, margin: "0 auto" }}>
         <span style={{ fontSize: 11, color: "rgba(240,224,219,0.3)" }}>© 2026 PlatCo Group</span>
         <div style={{ display: "flex", gap: 20 }}>
           <a href="#" style={{ fontSize: 11, color: "rgba(240,224,219,0.3)", textDecoration: "none" }}>Privacy Policy</a>

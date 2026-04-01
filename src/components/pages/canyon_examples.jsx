@@ -1,9 +1,9 @@
 "use client";
+import PageHeader from "@/components/PageHeader";
 import { useState } from "react";
 const CRIMSON = "#FF4444";
 const CYAN = "#8BE9FD";
 const GREEN = "#50FA7B";
-const LOGO_PATH = "/logo.png";
 
 const FUNCTIONS = ["All", "Operations", "Finance", "Sales", "Customer Success", "People", "Data & IT", "Government"];
 const FUNCTION_COLORS = { Operations: "#FFB464", Finance: "#64B4FF", Sales: "#E078F0", "Customer Success": "#50FA7B", People: "#E078F0", "Data & IT": "#8BE9FD", Government: "#FFB464" };
@@ -53,7 +53,6 @@ function MockScreenshot({ mock, color, values }) {
 }
 
 export default function CanyonExamples() {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [fnFilter, setFnFilter] = useState("All");
   const [selected, setSelected] = useState(null);
 
@@ -66,10 +65,7 @@ export default function CanyonExamples() {
         *{box-sizing:border-box}
         @keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
         ::-webkit-scrollbar{width:0px}
-        @media(max-width:768px){
-          .pnav-items{display:none !important}
-          .phamburger{display:flex !important}
-          .ex-grid{grid-template-columns:1fr 1fr !important}
+        @media(max-width:768px){.ex-grid{grid-template-columns:1fr 1fr !important}
           .ex-filters{overflow-x:auto !important;flex-wrap:nowrap !important}
           .ex-detail-inner{flex-direction:column !important}
         }
@@ -78,34 +74,9 @@ export default function CanyonExamples() {
         }
       `}</style>
 
-      <header style={{ position: "sticky", top: 0, zIndex: 20, padding: "14px 28px", display: "flex", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid rgba(66,59,87,0.2)", background: "rgba(13,13,15,0.85)", backdropFilter: "blur(12px)" }}>
-        <a href="/" style={{ display: "flex", alignItems: "center", flexShrink: 0, textDecoration: "none" }}><img src={LOGO_PATH} alt="Canyon" style={{ height: 20 }} /></a>
-        <nav className="pnav-items" style={{ display: "flex", alignItems: "center", gap: 24 }}>
-          {["Product", "Solutions", "Security", "Resources", "Company"].map((l, i) => (
-            <button key={i} style={{ background: "transparent", border: "none", cursor: "pointer", fontFamily: "inherit", fontSize: 12, fontWeight: 500, color: "rgba(240,224,219,0.5)", padding: "4px 0" }}>{l}</button>
-          ))}
-        </nav>
-        <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-          <button style={{ background: `linear-gradient(135deg, ${CRIMSON}, #532E25)`, border: "none", color: "#F0E0DB", padding: "7px 18px", borderRadius: 7, fontSize: 11, fontWeight: 600, cursor: "pointer", fontFamily: "inherit" }}>Book a Demo</button>
-          <button className="phamburger" onClick={() => setMobileMenuOpen(!mobileMenuOpen)} style={{ display: "none", background: "transparent", border: "none", cursor: "pointer", padding: 4, width: 32, height: 32, alignItems: "center", justifyContent: "center" }}>
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#F0E0DB" strokeWidth="2" strokeLinecap="round">
-              {mobileMenuOpen ? <><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></> : <><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></>}
-            </svg>
-          </button>
-        </div>
-      </header>
+      <PageHeader activeSection={null} />
 
-      {mobileMenuOpen && (
-        <div style={{ position: "fixed", inset: 0, zIndex: 25, background: "rgba(13,13,15,0.9)", backdropFilter: "blur(8px)" }} onClick={() => setMobileMenuOpen(false)}>
-          <div style={{ padding: "72px 28px 32px", display: "flex", flexDirection: "column", gap: 4 }} onClick={e => e.stopPropagation()}>
-            {["Product", "Solutions", "Security", "Resources", "Company"].map(l => (
-              <button key={l} onClick={() => setMobileMenuOpen(false)} style={{ background: "transparent", border: "none", cursor: "pointer", fontFamily: "inherit", fontSize: 18, fontWeight: 600, color: "#F0E0DB", padding: "14px 0", textAlign: "left", borderBottom: "1px solid rgba(66,59,87,0.2)" }}>{l}</button>
-            ))}
-          </div>
-        </div>
-      )}
-
-      <main style={{ maxWidth: 960, margin: "0 auto", padding: "0 24px" }}>
+<main style={{ maxWidth: 1100, margin: "0 auto", padding: "0 24px" }}>
         <section style={{ paddingTop: 48, paddingBottom: 24 }}>
           <h1 style={{ fontSize: 36, fontWeight: 700, letterSpacing: -0.8, color: "rgba(240,224,219,0.97)", margin: "0 0 8px" }}>What teams are building with Canyon.</h1>
           <p style={{ fontSize: 16, color: "rgba(240,224,219,0.45)", margin: "0 0 24px" }}>Real apps. Real data. Deployed to production.</p>
@@ -220,7 +191,7 @@ export default function CanyonExamples() {
         </section>
       </main>
 
-      <footer style={{ padding: "40px 28px 24px", borderTop: "1px solid rgba(66,59,87,0.15)", display: "flex", alignItems: "center", justifyContent: "space-between", maxWidth: 960, margin: "0 auto" }}>
+      <footer style={{ padding: "40px 28px 24px", borderTop: "1px solid rgba(66,59,87,0.15)", display: "flex", alignItems: "center", justifyContent: "space-between", maxWidth: 1100, margin: "0 auto" }}>
         <span style={{ fontSize: 11, color: "rgba(240,224,219,0.3)" }}>© 2026 PlatCo Group</span>
         <div style={{ display: "flex", gap: 20 }}>
           <a href="#" style={{ fontSize: 11, color: "rgba(240,224,219,0.3)", textDecoration: "none" }}>Privacy Policy</a>

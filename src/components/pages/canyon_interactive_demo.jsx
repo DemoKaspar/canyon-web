@@ -1,5 +1,6 @@
 "use client";
 import { useState, useEffect, useRef, useCallback } from "react";
+import PageHeader from "@/components/PageHeader";
 import { AreaChart, Area, BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, CartesianGrid } from "recharts";
 
 const CRIMSON = "#FF4444";
@@ -451,7 +452,7 @@ export default function CanyonDemo() {
   const [displayResult, setDisplayResult] = useState(null);
   const [showResult, setShowResult] = useState(false);
   const [inputFocused, setInputFocused] = useState(false);
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
   const taRef = useRef(null);
   const resultRef = useRef(null);
 
@@ -538,8 +539,6 @@ export default function CanyonDemo() {
 
         /* Mobile responsive */
         @media(max-width:768px){
-          .canyon-nav{display:none !important}
-          .canyon-hamburger{display:flex !important}
           .canyon-hero-title{font-size:28px !important;letter-spacing:-0.3px !important}
           .canyon-section{margin-top:60px !important;padding-left:4px !important;padding-right:4px !important}
           .canyon-section-title{font-size:24px !important}
@@ -616,123 +615,15 @@ export default function CanyonDemo() {
         <circle cx="95%" cy="55%" r="4" fill="#FF4444" opacity="0.4"/>
       </svg>
 
-      {/* Header */}
-      <header style={{
-        position: "relative", zIndex: 20, padding: "14px 28px",
-        display: "flex", alignItems: "center", justifyContent: "space-between",
-        borderBottom: "1px solid rgba(66,59,87,0.28)",
-      }}>
-        {/* Logo */}
-        <div style={{ display: "flex", alignItems: "center", flexShrink: 0 }}>
-          <img src={"/logo.png"} alt="Canyon" style={{ height: 20, width: "auto" }} />
-        </div>
+      <PageHeader ctaOverride={phase !== "idle" ? (
+        <button onClick={handleReset} style={{
+          background: "rgba(54,50,72,0.25)", border: "1px solid rgba(66,59,87,0.35)",
+          color: "rgba(240,224,219,0.5)", padding: "6px 14px", borderRadius: 7,
+          fontSize: 11, fontWeight: 500, cursor: "pointer", fontFamily: "inherit",
+        }}>← Start over</button>
+      ) : undefined} />
 
-        {/* Nav */}
-        <nav className="canyon-nav" style={{ display: "flex", alignItems: "center", gap: 24 }}>
-          {[
-            { label: "Product", hasDropdown: true },
-            { label: "Solutions" },
-            { label: "Security" },
-            { label: "Resources", hasDropdown: true },
-            { label: "Company" },
-          ].map((item, i) => (
-            <button key={i} style={{
-              background: "transparent", border: "none", cursor: "pointer",
-              fontFamily: "inherit", fontSize: 12, fontWeight: 500,
-              color: "rgba(240,224,219,0.5)", padding: "4px 0",
-              display: "flex", alignItems: "center", gap: 3,
-              transition: "color 0.15s",
-            }}
-              onMouseEnter={e => e.currentTarget.style.color = "#F0E0DB"}
-              onMouseLeave={e => e.currentTarget.style.color = "rgba(240,224,219,0.5)"}
-            >
-              {item.label}
-              {item.hasDropdown && (
-                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><polyline points="6 9 12 15 18 9"/></svg>
-              )}
-            </button>
-          ))}
-        </nav>
-
-        {/* CTA */}
-        <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-          {phase !== "idle" ? (
-            <button onClick={handleReset} style={{
-              background: "rgba(54,50,72,0.25)", border: "1px solid rgba(66,59,87,0.35)",
-              color: "rgba(240,224,219,0.5)", padding: "6px 14px", borderRadius: 7,
-              fontSize: 11, fontWeight: 500, cursor: "pointer", fontFamily: "inherit",
-            }}>← Start over</button>
-          ) : (
-            <button onClick={() => window.open("https://calendly.com", "_blank")} style={{
-              background: `linear-gradient(135deg, ${CRIMSON}, #532E25)`,
-              border: "none",
-              color: "#F0E0DB", padding: "7px 18px", borderRadius: 7,
-              fontSize: 11, fontWeight: 600, cursor: "pointer", fontFamily: "inherit",
-              transition: "all 0.2s",
-            }}>Book a Demo</button>
-          )}
-
-          {/* Hamburger. hidden on desktop, visible on mobile */}
-          <button
-            className="canyon-hamburger"
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            style={{
-              display: "none", background: "transparent", border: "none",
-              cursor: "pointer", padding: 4, flexDirection: "column", gap: 4,
-              alignItems: "center", justifyContent: "center",
-              width: 32, height: 32,
-            }}
-          >
-            {mobileMenuOpen ? (
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#F0E0DB" strokeWidth="2" strokeLinecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-            ) : (
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#F0E0DB" strokeWidth="2" strokeLinecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
-            )}
-          </button>
-        </div>
-      </header>
-
-      {/* Mobile menu overlay */}
-      {mobileMenuOpen && (
-        <div style={{
-          position: "fixed", top: 0, left: 0, right: 0, bottom: 0,
-          zIndex: 19, background: "rgba(13,13,15,0.85)",
-          backdropFilter: "blur(8px)", WebkitBackdropFilter: "blur(8px)",
-          animation: "fadeUp 0.2s ease",
-        }} onClick={() => setMobileMenuOpen(false)}>
-          <div style={{
-            padding: "72px 28px 32px",
-            display: "flex", flexDirection: "column", gap: 4,
-          }} onClick={e => e.stopPropagation()}>
-            {["Product", "Solutions", "Security", "Resources", "Company"].map(label => (
-              <button
-                key={label}
-                onClick={() => setMobileMenuOpen(false)}
-                style={{
-                  background: "transparent", border: "none", cursor: "pointer",
-                  fontFamily: "inherit", fontSize: 18, fontWeight: 600,
-                  color: "#F0E0DB", padding: "14px 0",
-                  textAlign: "left",
-                  borderBottom: "1px solid rgba(66,59,87,0.28)",
-                }}
-              >{label}</button>
-            ))}
-            <button
-              onClick={() => { setMobileMenuOpen(false); window.open("https://calendly.com", "_blank"); }}
-              style={{
-                marginTop: 16,
-                background: `linear-gradient(135deg, ${CRIMSON}, #532E25)`,
-                border: "none", borderRadius: 10, padding: "14px",
-                color: "#F0E0DB", fontSize: 15, fontWeight: 700,
-                cursor: "pointer", fontFamily: "inherit",
-                textAlign: "center",
-              }}
-            >Book a Demo</button>
-          </div>
-        </div>
-      )}
-
-      <main style={{ position: "relative", zIndex: 5, maxWidth: 720, margin: "0 auto", padding: "0 20px" }}>
+      <main style={{ position: "relative", zIndex: 5, maxWidth: 960, margin: "0 auto", padding: "0 20px" }}>
 
         {/* === IDLE === */}
         {phase === "idle" && (
@@ -888,17 +779,18 @@ export default function CanyonDemo() {
                   <h2 className="canyon-section-title" style={{ fontSize: 32, fontWeight: 700, letterSpacing: -0.5, margin: "0 0 4px", color: "rgba(240,224,219,0.95)" }}>What teams are building</h2>
                   <p style={{ fontSize: 13, color: "rgba(240,224,219,0.5)", margin: 0 }}>The tools that fall between BI and engineering</p>
                 </div>
-                <button style={{
+                <a href="/examples" style={{
                   background: "rgba(54,50,72,0.25)", border: "1px solid rgba(66,59,87,0.4)",
                   borderRadius: 8, padding: "7px 14px", cursor: "pointer", fontFamily: "inherit",
                   fontSize: 12, fontWeight: 500, color: "rgba(240,224,219,0.5)",
                   transition: "all 0.15s", display: "flex", alignItems: "center", gap: 5,
+                  textDecoration: "none",
                 }}
                   onMouseEnter={e => { e.currentTarget.style.borderColor = "rgba(240,224,219,0.5)"; e.currentTarget.style.color = "rgba(240,224,219,0.9)"; }}
                   onMouseLeave={e => { e.currentTarget.style.borderColor = "rgba(66,59,87,0.4)"; e.currentTarget.style.color = "rgba(240,224,219,0.5)"; }}
-                >View all</button>
+                >View all</a>
               </div>
-              <div className="canyon-grid-2" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 14 }}>
+              <div className="canyon-grid-3" style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 14 }}>
                 {[
                   { title: "Plant Quality Monitor", tag: "Manufacturing", tech: "SAP HANA + IoT", outcome: "Replaced weeks of manual reconciliation across 12 factories",
                     metrics: [{ v: "2.1%", l: "Defect Rate" }, { v: "12/12", l: "Lines" }],
@@ -912,6 +804,12 @@ export default function CanyonDemo() {
                   { title: "Shift Planning & Capacity Tool", tag: "Manufacturing", tech: "SAP HANA + BambooHR + MES", outcome: "Plant managers build weekly shift plans themselves. 31% less overtime",
                     metrics: [{ v: "↓31%", l: "Overtime" }, { v: "98.5%", l: "Coverage" }],
                     chartBars: [88, 92, 95, 97, 96, 90, 93] },
+                  { title: "Customer Health Dashboard", tag: "Customer Success", tech: "Salesforce + Zendesk + Stripe", outcome: "CS team spots churn risk 3 weeks earlier with unified health scoring",
+                    metrics: [{ v: "↓42%", l: "Churn" }, { v: "127", l: "Accounts" }],
+                    chartBars: [72, 78, 81, 85, 89, 91, 94] },
+                  { title: "Compliance Audit Trail", tag: "Government", tech: "SAP + Internal APIs", outcome: "Automated audit reporting that used to take 2 FTEs a full quarter",
+                    metrics: [{ v: "100%", l: "Coverage" }, { v: "< 1min", l: "Report Gen" }],
+                    chartBars: [55, 65, 75, 85, 90, 95, 100] },
                 ].map((tile, i) => (
                   <div key={i} style={{
                     background: "rgba(54,50,72,0.2)", border: "1px solid rgba(66,59,87,0.32)",
@@ -1056,7 +954,7 @@ export default function CanyonDemo() {
             {/* What they typed */}
             <div style={{
               background: "rgba(54,50,72,0.22)", borderRadius: 12, padding: "12px 16px",
-              maxWidth: 480, margin: "0 auto 28px", border: "1px solid rgba(66,59,87,0.32)",
+              maxWidth: 640, margin: "0 auto 28px", border: "1px solid rgba(66,59,87,0.32)",
             }}>
               <p style={{ fontSize: 13, color: "rgba(240,224,219,0.5)", margin: 0, lineHeight: 1.5, fontStyle: "italic" }}>
                 "{input.length > 120 ? input.slice(0, 120) + "..." : input}"
